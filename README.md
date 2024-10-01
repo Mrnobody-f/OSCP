@@ -359,14 +359,14 @@
 
 ## Discovering KDBX files
 <details>
-<summary>1. Windows</summary>
+<summary>Windows</summary>
     
 ```powershell
 Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue
 ```
 </details>
 <details>
-<summary>2. Linux</summary>
+<summary>Linux</summary>
     
 ```bash
 find / -name *.kdbx 2>/dev/null
