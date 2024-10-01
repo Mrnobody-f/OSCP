@@ -357,7 +357,7 @@
     ```
 </details>
 
-# Discovering KDBX files
+## Discovering KDBX files
 <details>
 <summary>1. Windows</summary>
 ```powershell
