@@ -1,6 +1,6 @@
 <div align="center"><h1> OSCP CheatSheet </h1></div>
 
-<div align="center"><img src="https://github.com/Mrnobody-f/OSCP/blob/main/mr-nobody.jpg" alt="Alt text" width="300"/></div>
+<div align="center"><img src="" alt="Alt text" width="300"/></div>
 
 # GENERAL
 
