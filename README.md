@@ -438,8 +438,21 @@ hydra -l email@company.xyz -p /path/to/wordlist.txt smtp://10.10.x.x -v
 #HTTP-POST
 hydra <username> <wordlist> 10.10.238.79 http-post-form "<path>:<login_credentials>:<invalid_response>"
 #hydra -l molly -p /usr/share/wordlists/rockyou.txt 10.10.238.79 http-post-form "/login:username=molly&password=^PASS^:Your username or password is incorrect." -v
-
 ```
+<details>
+<summary>Gobuster</summary></br>
+    
+```bash
+#https://hackertarget.com/gobuster-tutorial/
+gobuster dir -u http://10.10.181.239/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 
-
+#Available commands:
+#  dir         Uses directory/file enumeration mode
+#  dns         Uses DNS subdomain enumeration mode
+#  fuzz        Uses fuzzing mode
+#  help        Help about any command
+#  s3          Uses aws bucket enumeration mode
+# version     shows the current version
+#  vhost       Uses VHOST enumeration mode
+```
 </details>
