@@ -417,3 +417,6 @@ scp.exe -P 80 C:\Users\user\Desktop\F5-CVE-2022-1388\nss-f5.yaml farshad@192.227
 scp user@remote_host:/remote/directory/remote_file.txt /local/directory/
 ```
 </details>
+
+
+## FUZZING
