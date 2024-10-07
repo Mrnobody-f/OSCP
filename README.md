@@ -439,6 +439,7 @@ hydra -l email@company.xyz -p /path/to/wordlist.txt smtp://10.10.x.x -v
 hydra <username> <wordlist> 10.10.238.79 http-post-form "<path>:<login_credentials>:<invalid_response>"
 #hydra -l molly -p /usr/share/wordlists/rockyou.txt 10.10.238.79 http-post-form "/login:username=molly&password=^PASS^:Your username or password is incorrect." -v
 ```
+</details>
 <details>
 <summary>Gobuster</summary></br>
     
