@@ -457,3 +457,28 @@ gobuster dir -u http://10.10.181.239/ -w /usr/share/wordlists/dirbuster/director
 #  vhost       Uses VHOST enumeration mode
 ```
 </details>
+<details>
+<summary>Dirbsearch</summary></br>
+    
+```bash
+#https://github.com/maurosoria/dirsearch
+python3 dirsearch.py -e php,html,js -u https://target -w /path/to/wordlist
+```
+</details>
+<details>
+<summary>FFUF</summary></br>
+    
+```bash
+#req-fuzz.txt = full POST Request Packet + write FUZZ in each place that you want to be fuzzed
+ffuf -request req-fuzz.txt -request-proto http -w passwordlist-1647876320267.txt
+```
+</details>
+<details>
+<summary>WFUZZ</summary></br>
+    
+```bash
+Wfuzz -z file,/usr/share/wordlist/dirb/common.txt 'http://10.10.94.63:5000/api/v1/resources/books?show=FUZZ'
+```
+</details>
+
+
