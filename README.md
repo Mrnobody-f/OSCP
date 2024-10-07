@@ -418,6 +418,39 @@ scp user@remote_host:/remote/directory/remote_file.txt /local/directory/
 ```
 </details>
 
+## Wordlists
+<details>
+    <summary>Kali</summary></br>
+    
+```bash 
+/usr/share/wordlists/
+```   
+</details>
+<details>
+    <summary>Seclist</summary></br>
+    
+```bash 
+# https://github.com/danielmiessler/SecLists.git
+/usr/share/seclists/
+```   
+</details>
+<details>
+    <summary>CUPP</summary></br>
+    
+```bash
+#Generate Custom Password
+https://github.com/Mebus/cupp
+```   
+</details>
+<details>
+    <summary>username_generator.py</summary></br>
+    
+```bash 
+#https://github.com/shroudri/username_generator
+#combine data in user.txt to make diffrent shape of usernames
+python username_generator.py -w user.txt -u
+```   
+</details>
 
 ## FUZZING
 
