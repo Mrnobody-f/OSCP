@@ -451,6 +451,16 @@ https://github.com/Mebus/cupp
 python username_generator.py -w user.txt -u
 ```   
 </details>
+<details>
+    <summary>Cewl</summary></br>
+    
+```bash
+#create a password list from data in website
+#-d 5 = depth to search in website
+#-m 8 = Min length of passwords
+cewl -w list.txt -d 5 -m 8 https://clinic.thmredteam.com/
+```   
+</details>
 
 ## FUZZING
 
