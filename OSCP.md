@@ -602,3 +602,36 @@ hashcat -a 3 -m 0 e48e13207341b6bffb7fb1622282247b ?d?d?d?d
 
 ```
 </details>
+
+<details>
+<summary>Unshadow</summary></br>
+    
+```bash
+# use this tool to make hash ready for the John the Ripper
+# local_passwd.txt include root:x:0:0::/root:/bin/bash
+# local_shadow.txt include root:$6$Ha.d5nGupBm29pYr$yugXSk24ZljLTAZZagtGwpSQhb3F2DOJtnHrvk7HI2ma4GsuioHp8sm3LJiRJpKfIf7lZQ29qgtH17Q/JDpYM/:18576::::::
+
+unshadow local_passwd.txt local_shadow.txt >unshadowed.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=sha512crypt unshadowed.txt
+```
+</details>
+
+<details>
+<summary>Zip2John</summary></br>
+    
+```bash
+# if you have a Zip or Rar file with password use this tool to make hash ready for the John the Ripper
+zip2john secure_1605054835063.zip > zip_hash.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt zip_hash.txt
+```
+</details>
+
+<details>
+<summary>SSH2John</summary></br>
+    
+```bash
+# Use this tool to extract hash from the private key and crack it with john
+ssh2john id_rsa_1605800988509.id_rsa > id_rsa_hash.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
+```
+</details>
