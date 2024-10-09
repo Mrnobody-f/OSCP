@@ -379,10 +379,10 @@ find / -name *.kdbx 2>/dev/null
 <summary>Netcat</summary>
 
 ```bash
-#Attacker
+# Attacker
 nc <target_ip> 1234 < nmap
 
-#Target
+# Target
 nc -lvp 1234 > nmap
 ```
 </details>
@@ -439,7 +439,7 @@ scp user@remote_host:/remote/directory/remote_file.txt /local/directory/
     <summary>CUPP</summary></br>
     
 ```bash
-#Generate Custom Password
+# Generate Custom Password
 https://github.com/Mebus/cupp
 ```   
 </details>
@@ -447,8 +447,8 @@ https://github.com/Mebus/cupp
     <summary>username_generator.py</summary></br>
     
 ```bash 
-#https://github.com/shroudri/username_generator
-#combine data in user.txt to make diffrent shape of usernames
+# https://github.com/shroudri/username_generator
+# Combine data in user.txt to make diffrent shape of usernames
 python username_generator.py -w user.txt -u
 ```   
 </details>
@@ -456,9 +456,9 @@ python username_generator.py -w user.txt -u
     <summary>Cewl</summary></br>
     
 ```bash
-#create a password list from data in website
-#-d 5 = depth to search in website
-#-m 8 = Min length of passwords
+# create a password list from data in website
+# -d 5 = depth to search in website
+# -m 8 = Min length of passwords
 cewl -w list.txt -d 5 -m 8 https://clinic.thmredteam.com/
 ```   
 </details>
@@ -469,17 +469,17 @@ cewl -w list.txt -d 5 -m 8 https://clinic.thmredteam.com/
 <summary>HYDRA</summary></br>
     
 ```bash
-#SSH
+# SSH
 hydra -l <username> -P <full path to pass> 10.10.238.79 -t 4 ssh
 #hydra -l molly -p /usr/share/wordlists/rockyou.txt 10.10.238.79 ssh
 
-#FTP
+# FTP
 hydra -l -ftp -p passlist.txt ftp://10.10.x.x
 
-#SMTP
+# SMTP
 hydra -l email@company.xyz -p /path/to/wordlist.txt smtp://10.10.x.x -v
 
-#HTTP-POST
+# HTTP-POST
 hydra <username> <wordlist> 10.10.238.79 http-post-form "<path>:<login_credentials>:<invalid_response>"
 #hydra -l molly -p /usr/share/wordlists/rockyou.txt 10.10.238.79 http-post-form "/login:username=molly&password=^PASS^:Your username or password is incorrect." -v
 ```
@@ -488,7 +488,7 @@ hydra <username> <wordlist> 10.10.238.79 http-post-form "<path>:<login_credentia
 <summary>Gobuster</summary></br>
     
 ```bash
-#https://hackertarget.com/gobuster-tutorial/
+# https://hackertarget.com/gobuster-tutorial/
 gobuster dir -u http://10.10.181.239/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 
 #Available commands:
@@ -505,7 +505,7 @@ gobuster dir -u http://10.10.181.239/ -w /usr/share/wordlists/dirbuster/director
 <summary>Dirbsearch</summary></br>
     
 ```bash
-#https://github.com/maurosoria/dirsearch
+# https://github.com/maurosoria/dirsearch
 python3 dirsearch.py -e php,html,js -u https://target -w /path/to/wordlist
 ```
 </details>
@@ -513,7 +513,7 @@ python3 dirsearch.py -e php,html,js -u https://target -w /path/to/wordlist
 <summary>FFUF</summary></br>
     
 ```bash
-#req-fuzz.txt = full POST Request Packet + write FUZZ in each place that you want to be fuzzed
+# req-fuzz.txt = full POST Request Packet + write FUZZ in each place that you want to be fuzzed
 ffuf -request req-fuzz.txt -request-proto http -w passwordlist-1647876320267.txt
 ```
 </details>
@@ -526,3 +526,79 @@ Wfuzz -z file,/usr/share/wordlist/dirb/common.txt 'http://10.10.94.63:5000/api/v
 </details>
 
 
+## Password Cracker
+
+<details>
+<summary>John The Ripper</summary></br>
+    
+```bash
+# crack the passwd file
+john --wordlist=/usr/share/wordlists/fasttrack.txt shadow
+
+# --format (Type of Encryption)
+john --format=whirlpool --wordlist=/usr/share/wordlists/rockyou.txt hash4.txt
+john --format=raw-sha512 --wordlist=/usr/share/wordlists/rockyou.txt hash4.txt
+john --format=raw-sha256 --wordlist=/usr/share/wordlists/rockyou.txt hash2.txt
+
+# nt (NTLM)
+john --format=nt --wordlist=/usr/share/wordlists/rockyou.txt ntlm_1605054722641.txt
+```
+```bash
+# Single crack mode: Create Custom dictionary by the username of the hash
+# txt file include username and hash Example: Joker:7bf6d9bb82bed1302f331fc6b816aada
+john --single --format=raw-md5 single.txt
+```
+```bash
+# Custom Rules: If you have specific information of password pattern in the company then you can create rule for john the ripper to create dictionary
+# Use chatgpt to create the rules and add rules to this file /etc/john/john.conf
+
+' Sample Rule
+
+[List.Rules:farshad]
+# Ensure the first character is A-Z
+# Ensure the last character is 0-9
+# Limit to 10 characters
+A0"^[A-Z][A-Z!@@$%^&*(]{8}[0-9]$"
+
+'
+john --wordlist=/usr/share/wordlists/rockyou.txt --rule=farshad crack.txt
+```
+</details>
+
+<details>
+<summary>Hashcat</summary></br>
+    
+```bash
+# Dictionary Attack:
+# use https://hashcat.net/wiki/doku.php?id=example_hashes to set -m number for the type of encryption
+# -m 0 (MD5)  ,  -m 100 (SHA1)  , -m 5600 (NTLMv2)  ,  -m 1000 (NTLM)  ,  -m 13100 (TGS,Kerbros5) 
+
+Hashcat -a 0 -m 0 f806fc5a2a0d5ba2471600758452799c /usr/share/wordlists/rockyou.txt
+hashcat -a 0 -m 100 8d6e34f987851aa599257d3831a1af040886842f /usr/share/wordlists/rockyou.txt
+
+
+# All the hash from Responder
+hashcat -m 5600 fcastle::MARVEL:1f3142183bfe3077:4510733C5FE127A2BED16309A5AEE1E4:010100000000000080EBFF8F5C0CDB01B99A3625B83D6C940000000002000800460041005900580001001E00570049004E002D00430041003300500039004A005500460055004800540004003400570049004E002D00430041003300500039004A00550046005500480054002E0046004100590058002E004C004F00430041004C000300140046004100590058002E004C004F00430041004C000500140046004100590058002E004C004F00430041004C000700080080EBFF8F5C0CDB010600040002000000080030003000000000000000010000000020000004951D33B19D358FA0E43504173CC0B47061C9E8DF7DC6369BC6C9DBB144D4AC0A0010000000000000000000000000000000000009001C0063006900660073002F0061006C0069002E006C006F00630061006C000000000000000000 Desktop/passwordlist-1647876320267.txt
+
+
+# Use seconf part of NTLM as NT for Hashcat
+#Administrator:500:aad3b435b51404eeaad3b435b51404ee:38dd91b9d6f54a5dfbf360e22a1f27e6:::
+Hashcat -m 1000 38dd91b9d6f54a5dfbf360e22a1f27e6 Desktop/passwordlist-1647876320267.txt
+
+
+hashcat -m 13100 $krb5tgs$23$*SQLService$MARVEL.LOCAL$MARVEL.local/SQLService*$722d4250ee058012574aff087f44bc17$3a75e4f46f0c070a770fd0f6f874c063e3c0eeed84f3b5c73d452d8b5b2c434444aa56660b80297be8a75f6c1cb05465003df9f9959c0bba3a9dc8d70343198a95c1210062aff696cd02d19395ea118e479d06a992198750e8d9713066c62b8d75f18fcb83abcd71ab6bce06f46ee47986df2a6bc75c2d669af58c44b8912463a22cb883b0f8b75c6625032eda33af1964245b11542f56c579c9215d1c2b4b18191197de23cb2ee2f15e31ea08996b12caabedea738ee793287a7eb5dc8d022df3fbdb8ef887b7fd8e5f58dcadaae845fc19433269cc9828a79d7c9fa44d3ecd19a2237451dbdd5b86ccfb13d45e814f31da6ba33a9de013779f08cf808be78b0cae98d596819576502d4f7512b9265595e5da50b43345fb5920fb702ce55abaa4e4884c7c0df00b5cb35f08d19f8c3f2665202d1a8bc531eea5ed863fb33deba63f7c431da760d4d8d56e8abc7d0f36e7c2dec3166a1ff6c280f97cce43d3e0a0e94ee2fdfa06341f842f561d7ff84c658acc02484478b53034947273e1311ecb04acdd5dd762b5c63b779a3fb397c1a0b209f605cdb732054c3b157b0b8158409d7d07051f83a436df5e2daa85d4373667128968bd99f736eac84f26961564cd6bd7262caddd70fec24b9316b4c15087cf8da420bdf4984e2c50171ff688eeb5cfbdf7e8a42c7864baf1a410701f922ba441338921efad67843392e33536bc36732a1d830c0c1051a626e0169970011e1a75ea8113b71e7d6ca3e0dbe839e2a7ee07a58e5e4b11b6ce5c6639350fea8b6c3ab6fabbb4c1bedc0dc200475ddc2b9e94cdd49fc77482932f7a29f61b8a660fe7127953a3fde3270af914f5e26f1f48715fad8e85e64f9938e73a9213e22444ce9963dbde07270751f56bfe283ffce0317550d489fc32808edc9ce83c8aa92933e026627f9a0319a78ea1a63c672f4f37b799fd2e812c69f66d864a59d74be0d942c7f24cc92e6d59fe4ef25a7509b4e966558ab3a2f32b10d3c1bc4cef69645fe16cf96995668af5c2fc9cb814e25f09ca37c261ac9046cf3ff2639aec3941e99b31eacf4157544f5c5713e490d7de6c1427192fc5d2752e4addabd0bebb4c665458064eeb5acac85dd9b6eb0efa5a40b64cd518bf52f50d7a6c9c59d27e96ffbfb952024aa6e22a3a3b041fe29fdc1fa9199ef0ce56722dc972f91fd6b5f5b6b584edb6c14529afae97531321899da9c0ef13a500a5d9f78fc40718dc2f817e1ec8ee2286c3b89a70e4e472efc111f14898bd6240bf655d7a6245fc36e63b6110a3c3ae5a5e5b43cd9b2f240bc3d8be498eb9fcccb605dff8685569314eee73fd1ea507ea95fbb20616e36b4a79e48e98ca34f46595295f1c5acc27641827544feee555498a7703fe16e386beca1826fe6f026f3ae071f1b9f410736c7bec33554a98a8a155aab0f4 /usr/share/wordlists/rockyou.txt 
+
+
+# cracking JWT signatures using the HMAC-SHA256 algorithm
+hashcat -m 16500 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJ1c2VyIiwiaWF0IjoxNjc1NDE2NzE1fQ.3vxLIVEcfPZlugDcq6gXl80Ri1Pj37gKuayFHHGrO8K /usr/share/wordlists/rockyou.txt
+```
+
+```bash
+# Brute Force Attack
+# Use hashcat --help to find charset table signiture
+# -a 3 (Brute Force)  ,  ?d?d?d?d  (4 charecter just Numbers)
+
+hashcat -a 3 -m 0 e48e13207341b6bffb7fb1622282247b ?d?d?d?d
+
+```
+</details>
