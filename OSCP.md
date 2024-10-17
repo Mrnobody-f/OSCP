@@ -683,7 +683,7 @@ socks4 127.0.0.1 9050
 
 # conncet SSH to Victim system
 # -D 9050  (Bind ssh to this port) , -f (send SSH to background) , -i pivot (private key file - you can remove this and just Enter password after command)
-ssh if -N -D 9050 -i pivot root@10.10.155.5
+ssh -f -N -D 9050 -i pivot root@10.10.155.5
 
 # now use proxychains before each command on your system to send it to 9050 port from ssh to victim system
 # 10.10.10.255 is a system that you can access it from only victim system
