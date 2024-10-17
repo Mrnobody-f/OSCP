@@ -704,3 +704,25 @@ sshuttle -r root@10.10.155.5 10.10.10.0/24
 ```
 </details>
 
+<details>
+<summary>Chisel</summary></br>
+    
+```bash
+# https://github.com/jpillora/chisel
+# attacker : 203.0.113.10 , Victim : 192.168.1.100 , Target Network : 10.10.0.0/24 (Victim internal access)
+
+# 1- Start Chisel server on the Victim
+C:\Tools\chisel.exe server -p 8080 --reverse
+
+# 2- Run Chisel client on Attacker System
+./chisel client 192.168.1.100:8080 R:1080:socks
+
+# 3- Set Proxy chain on Attacker system , Add at the end of /etc/proxychains.conf
+socks5 127.0.0.1 1080
+
+# 4- run every command with proxychanin
+proxychains nmap -sT -Pn 10.10.0.0/24
+
+```
+</details>
+
