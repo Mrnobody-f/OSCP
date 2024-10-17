@@ -669,7 +669,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
 
 
 
-<div align="center"><h1> Persistence </h1></div>
+<div align="center"><h1> Post Exploitation </h1></div>
 
 
 ## Pivoting
