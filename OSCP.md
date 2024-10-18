@@ -668,6 +668,40 @@ john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
 </details>
 
 
+<div align="center"><h1> Enumeration </h1></div>
+
+## Web Application
+
+<details>
+<summary>Finding Subdomains</summary></br>
+
+Assetfinder :
+```bash
+# https://github.com/tomnomnom/assetfinder
+assetfinder [--subs-only] <domain>
+
+# Automate Assetfinder , create this file as autoasset.sh and then chomd +x autoasset.sh
+
+
+#!/bin/bash
+if [ ! -d "$url" ];then
+        mkdir $url
+fi
+
+if [ ! -d "$url/recon" ];then
+        mkdir $url/recon
+fi
+
+echo "[+] Harvesting Subdomains With Assetfinder..."
+assetfinder $url >> $url/recon/assets.txt
+cat $url/recon/assets.txt | grep $1 >> $url/recon/final.txt
+rm $url/recon/assets.txt
+
+```
+
+
+</details>
+
 
 <div align="center"><h1> Post Exploitation </h1></div>
 
@@ -725,4 +759,7 @@ proxychains nmap -sT -Pn 10.10.0.0/24
 
 ```
 </details>
+
+
+
 
