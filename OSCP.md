@@ -679,27 +679,36 @@ Assetfinder :
 ```bash
 # https://github.com/tomnomnom/assetfinder
 assetfinder [--subs-only] <domain>
-
-# Automate Assetfinder , create this file as autoasset.sh and then chomd +x autoasset.sh
-
-
-#!/bin/bash
-if [ ! -d "$url" ];then
-        mkdir $url
-fi
-
-if [ ! -d "$url/recon" ];then
-        mkdir $url/recon
-fi
-
-echo "[+] Harvesting Subdomains With Assetfinder..."
-assetfinder $url >> $url/recon/assets.txt
-cat $url/recon/assets.txt | grep $1 >> $url/recon/final.txt
-rm $url/recon/assets.txt
-
 ```
 
+Amass :
+```bash
+# https://github.com/owasp-amass/amass
+amass enum -d tesla.com
+```
 
+</details>
+
+<details>
+<summary>Checking Live Subdomains</summary></br>
+
+Httprobe :
+```bash
+https://github.com/tomnomnom/httprobe
+cat recon/example/domains.txt | httprobe
+cat recon/example/domains.txt| sort -u | httprobe -s -p https:443 | sed 's/https\?:\/\///' | tr -d ':443' >> livedomains.txt
+```
+    
+</details>
+
+<details>
+<summary>Automating</summary></br>
+
+Find Live Subdomains :
+```bash
+https://github.com/Gr1mmie/sumrecon/blob/master/sumrecon.sh
+```
+    
 </details>
 
 
