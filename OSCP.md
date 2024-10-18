@@ -694,7 +694,7 @@ amass enum -d tesla.com
 
 Httprobe :
 ```bash
-https://github.com/tomnomnom/httprobe
+# https://github.com/tomnomnom/httprobe
 cat recon/example/domains.txt | httprobe
 cat recon/example/domains.txt| sort -u | httprobe -s -p https:443 | sed 's/https\?:\/\///' | tr -d ':443' >> livedomains.txt
 ```
@@ -706,7 +706,7 @@ cat recon/example/domains.txt| sort -u | httprobe -s -p https:443 | sed 's/https
 
 Find Live Subdomains :
 ```bash
-https://github.com/Gr1mmie/sumrecon/blob/master/sumrecon.sh
+# https://github.com/Gr1mmie/sumrecon/blob/master/sumrecon.sh
 ```
     
 </details>
