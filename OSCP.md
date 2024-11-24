@@ -673,7 +673,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
 ## Active Directory
 
 <details>
-<summary>DOmain Users</summary></br>
+<summary>Domain Users</summary></br>
 
 net user :
 ```bash
