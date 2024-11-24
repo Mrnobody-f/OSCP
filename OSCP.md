@@ -675,7 +675,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
 <details>
 <summary>Domain Info</summary></br>
 
-net Command :
+net Command (CMD) :
 ```bash
 # if you have access to a Domain system use this commands in CMD
 net user /domain                    #(show all domain users)
@@ -683,6 +683,17 @@ net user <username> /domain         #(show all info about selected user)
 net group /domain                   #(show all domain groups)
 net group "Tier 1 Admins" /domain   #(show all info about selected group)
 net accounts /domain                #(show info about password policy)
+```
+
+Get-ADUser (PowerShell):
+```
+# if you have access to a Domain system use this commands in PowerShell
+
+Get-ADUser -Identity gordon.stevens -Server za.tryhackme.com -Properties *         #(show all info about the selected user in the domain)
+Get-ADGroup -Identity "Tier 2 Admins" -Server za.tryhackme.com -Properties *       #(show all info about selected group)
+Get-ADGroupMember -Identity Administrators -Server za.tryhackme.com                #(show all memebers of selected group)
+ Get-ADDomain -Server za.tryhackme.com                                             #(show all info about the Domain)
+
 ```
 
 RSAT:
@@ -715,6 +726,11 @@ Enter za.tryhackme.com as the Domain and Click OK
 Right-click on Active Directory Users and Computers in the left-hand pane
 Click on View -> Advanced Features
 
+```
+
+BloodHound :
+```bash
+# search in your documents for info about install and run bloodhound
 ```
 
 </details>
