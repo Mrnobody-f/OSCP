@@ -685,6 +685,37 @@ net group "Tier 1 Admins" /domain   #(show all info about selected group)
 net accounts /domain                #(show info about password policy)
 ```
 
+RSAT:
+```
+# if you have Graphical access to a domain system install RSAT on it and then use MMC to connect  (there is chance that your user has acces to do that)
+
+install:
+Press Start
+Search "Apps & Features" and press enter
+Click Manage Optional Features
+Click Add a feature
+Search for "RSAT"
+Select "RSAT: Active Directory Domain Services and Lightweight Directory Tools" and click Install
+
+------------------------------------------------------------------------------------------------
+
+RUN:
+In MMC, we can now attach the AD RSAT Snap-In:
+
+Click File -> Add/Remove Snap-in
+Select and Add all three Active Directory Snap-ins
+Click through any errors and warnings
+Right-click on Active Directory Domains and Trusts and select Change Forest
+Enter za.tryhackme.com as the Root domain and Click OK
+Right-click on Active Directory Sites and Services and select Change Forest
+Enter za.tryhackme.com as the Root domain and Click OK
+Right-click on Active Directory Users and Computers and select Change Domain
+Enter za.tryhackme.com as the Domain and Click OK
+Right-click on Active Directory Users and Computers in the left-hand pane
+Click on View -> Advanced Features
+
+```
+
 </details>
 
 ## Web Application
