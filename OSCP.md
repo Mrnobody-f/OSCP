@@ -673,16 +673,16 @@ john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
 ## Active Directory
 
 <details>
-<summary>Domain Users</summary></br>
+<summary>Domain Info</summary></br>
 
-net user :
+net Command :
 ```bash
 # if you have access to a Domain system use this commands in CMD
-net user /domain                    (show all domain users)
-net user <username> /domain         (show all info about selected user)
-net group /domain                   (show all domain groups)
-net group "Tier 1 Admins" /domain   (show all info about selected group)
-net accounts /domain                (show info about password policy)
+net user /domain                    #(show all domain users)
+net user <username> /domain         #(show all info about selected user)
+net group /domain                   #(show all domain groups)
+net group "Tier 1 Admins" /domain   #(show all info about selected group)
+net accounts /domain                #(show info about password policy)
 ```
 
 </details>
