@@ -670,6 +670,23 @@ john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
 
 <div align="center"><h1> Enumeration </h1></div>
 
+## Active Directory
+
+<details>
+<summary>DOmain Users</summary></br>
+
+net user :
+```bash
+# if you have access to a Domain system use this commands in CMD
+net user /domain                    (show all domain users)
+net user <username> /domain         (show all info about selected user)
+net group /domain                   (show all domain groups)
+net group "Tier 1 Admins" /domain   (show all info about selected group)
+net accounts /domain                (show info about password policy)
+```
+
+</details>
+
 ## Web Application
 
 <details>
