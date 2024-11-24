@@ -687,7 +687,7 @@ net accounts /domain                #(show info about password policy)
 
 RSAT:
 ```
-# if you have Graphical access to a domain system install RSAT on it and then use MMC to connect  (there is chance that your user has acces to do that
+# if you have Graphical access to a domain system install RSAT on it and then use MMC to connect  (there is chance that your user has acces to do that)
 
 
 install:
