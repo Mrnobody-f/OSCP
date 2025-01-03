@@ -676,16 +676,18 @@ john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
 <details>
 <summary>whois</summary></br>
 
-net Command (CMD) :
+Tool :
 ```bash
-# if you have access to a Domain system use this commands in CMD
-net user /domain                    #(show all domain users)
-net user <username> /domain         #(show all info about selected user)
-net group /domain                   #(show all domain groups)
-net group "Tier 1 Admins" /domain   #(show all info about selected group)
-net accounts /domain                #(show info about password policy)
+whois megacorpone.com -h 192.168.50.251          # -h (local whois server if exist)
+whois 185.188.105.11 
+
 ```
 
+Webistes :
+```bash
+a
+
+```
 
 </details>
 
