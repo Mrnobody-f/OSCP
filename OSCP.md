@@ -670,6 +670,25 @@ john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
 
 <div align="center"><h1> Enumeration </h1></div>
 
+
+## Passive Information Gathering
+
+<details>
+<summary>whois</summary></br>
+
+net Command (CMD) :
+```bash
+# if you have access to a Domain system use this commands in CMD
+net user /domain                    #(show all domain users)
+net user <username> /domain         #(show all info about selected user)
+net group /domain                   #(show all domain groups)
+net group "Tier 1 Admins" /domain   #(show all info about selected group)
+net accounts /domain                #(show info about password policy)
+```
+
+
+</details>
+
 ## Active Directory
 
 <details>
