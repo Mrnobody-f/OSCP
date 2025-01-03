@@ -685,11 +685,135 @@ whois 185.188.105.11
 
 Webistes :
 ```bash
-a
-
+https://who.is/
+https://whois.domaintools.com/
+https://viewdns.info/
+https://lookup.icann.org/en
+https://www.statscrop.com/www/iidic.com
+https://website.informer.com/
 ```
 
 </details>
+
+<details>
+<summary>Google Hacking</summary></br>
+
+Query Examples :
+```bash
+site:megacorpone.com filetype:txt
+site:megacorpone.com -filetype:html           (exclude html files)
+site:digikala.com ext:xml                                           (find xml pages) (xml-py-php-html)
+site:iidic.com intext:حقوق
+intitle:iidic "user"                                                        (find pages with iidic in title and "user" on the page content)
+site:*.com intitle:"index of" "parent directory"     (misconfigure to find parent directory in index)
+site: gov.* intitle:"index.of" *.csv password
+inurl:admin filetype:xlsx site:gov.* password
+inurl:pastebin "SHODAN_API_KEY"
+site:edu intext:"index of"" "payroll" filetype:xlsx
+```
+
+Query Sources :
+```bash
+https://www.exploit-db.com/google-hacking-database
+![image](https://github.com/user-attachments/assets/d75c21a5-39f4-4021-8c4b-2a8ad036be80)
+```
+</details>
+
+
+<summary>GitHub</summary></br>
+
+Query Example :
+```bash
+owner:megacorpone path:user                  (find any files with "user" in the filename)
+
+Search syntax:
+https://docs.github.com/en/search-github/github-code-search/understanding-github-code-search-syntax
+```
+
+Tool :
+```bash
+https://github.com/gitleaks/gitleaks
+```
+</details>
+
+<summary>Shodan</summary></br>
+
+Query Example :
+```bash
+port:3389 country:ir has_Screenshot:true                      
+title:"+tm01" has_Screenshot:true          #(+tm01 = a model of camera)
+net:10.8.12.0/24 http.favicon.hash:1768726119
+http.html:"wp-config .php"
+Html:"hacked by" country:ir
+```
+
+</details>
+
+<summary>Censys</summary></br>
+
+Query Example :
+```bash
+services.http.response.body:nooranet
+services.http.response.headers.x_powered_by : php/8
+location.country_code: IR and services.service_name: {"FTP", "Telnet"}
+location.country_code: IR and services.port: {9200}
+```
+
+</details>
+
+<summary>Useful Websites</summary></br>
+
+Technology Found :
+```bash
+https://builtwith.com/
+https://www.wappalyzer.com/
+```
+
+SSL Check :
+```bash
+https://www.ssllabs.com/ssltest/
+https://www.cdn77.com/tls-test
+```
+
+DNS and Domain :
+```bash
+https://searchdns.netcraft.com/?url=http://mci.ir
+https://passivedns.mnemonic.no/
+https://dnshistory.org/dns-records/iidic.com
+https://viewdns.info/
+https://dnsdumpster.com/
+https://www.nslookup.io/
+http://www.kloth.net/services/nslookup.php
+```
+
+IP and Geo :
+```bash
+https://www.liveipmap.com/
+https://www.iptrackeronline.com/
+https://www.infobyip.com/
+https://www.ipfingerprints.com/
+```
+
+Subdomain :
+```bash
+https://crt.sh/
+https://shadowcrypt.net/tools/subdomain
+https://www.virustotal.com/gui/home/search
+```
+
+Genral Info :
+```bash
+https://sitereport.netcraft.com/
+https://dorksearch.com/
+https://www.yougetsignal.com/
+https://web.archive.org/
+https://securitytrails.com/
+https://website.informer.com/
+```
+
+</details>
+
+
 
 ## Active Directory
 
