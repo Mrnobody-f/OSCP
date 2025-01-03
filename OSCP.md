@@ -719,7 +719,7 @@ https://www.exploit-db.com/google-hacking-database
 ```
 </details>
 
-
+<details>
 <summary>GitHub</summary></br>
 
 Query Example :
@@ -736,6 +736,7 @@ https://github.com/gitleaks/gitleaks
 ```
 </details>
 
+<details>
 <summary>Shodan</summary></br>
 
 Query Example :
@@ -749,6 +750,7 @@ Html:"hacked by" country:ir
 
 </details>
 
+<details>
 <summary>Censys</summary></br>
 
 Query Example :
@@ -761,6 +763,7 @@ location.country_code: IR and services.port: {9200}
 
 </details>
 
+<details>
 <summary>Useful Websites</summary></br>
 
 Technology Found :
