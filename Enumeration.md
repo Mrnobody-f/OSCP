@@ -178,6 +178,20 @@ nslookup -query=CNAME sub.example.com
 nslookup -query=ANY example.com
 ```
 
+Tools:
+```bash
+#DNSRECON:
+
+dnsrecon -d digikala.com -t std
+dnsrecon -d digikala.com -D ~/list.txt  -t brt            #(-t brt = bruteforce , -D = disctionary , -t std = standard)
+
+
+#DNSENUM:
+
+dnsenum digikala.com
+
+```
+
 </details>
 
 <details>
@@ -206,6 +220,178 @@ Reverse Lookup Zone:
 for ip in $(seq 155 192);do host 50.7.67.$ip;done | grep -v "not found"
 ```
 </details>
+
+
+<details>
+<summary>Port Scan</summary></br>
+
+NC:
+```bash
+#TCP:
+
+nc -nvv -w 1 -z 192.168.50.152 3388-3390            #(-n = not toresolve hostnames and ports to names , -w 1 = set timeout on 1sec , -z = dny the send recive data and just check opening)
+
+#UDP:
+
+nc -nv -u -z -w 1 192.168.50.149 120-123            #(-u = UDP)
+```
+
+Windows:
+```bash
+Test-NetConnection -Port 445 192.168.50.151
+
+#Auto:
+foreach ($port in 1..1024) {if (($a=Test-NetConnection 192.168.87.131 -Port $port -WarningAction SilentlyContinue).tcptestsucceeded -eq $true){ "TCP port $port is Open"}}
+
+```
+
+Rustscan:
+```bash
+#installation:
+https://github.com/RustScan/RustScan/releases
+
+	1- Download .deb
+	2- dpkg -i rustscan_2.3.0_amd64.deb
+
+
+#Usage:
+rustscan -a www.google.com, 127.0.0.1
+
+https://github.com/RustScan/RustScan/wiki/Things-you-may-want-to-do-with-RustScan-but-don't-understand-how
+```
+
+</details>
+
+
+
+<details>
+<summary>SMB Enumeration</summary></br>
+
+SMB Enumeration (Linux):
+```bash
+#Port 139 UDP
+#Port 445 TCP
+
+nmap -v -p 139,445 -oG smb.txt 192.168.50.1-254
+
+
+$NMAP NSE for SMB path:
+ls -l /usr/share/nmap/scripts/smb*
+
+Example:
+nmap -v -p 139,445 --script smb-os-discovery 192.168.50.152
+```
+
+
+SMB Enumeration (Windows):
+```bash
+#Find netbios name in domain 
+sudo nbtscan -r 192.168.50.0/24
+
+#then
+net view \\dc01 /all
+```
+
+enum4linux:
+```bash
+enum4linux $ip
+```
+</details>
+
+
+<details>
+<summary>SMTP Enumeration</summary></br>
+
+SMTP Enumeration (Linux):
+```bash
+#port 25
+#Use NC OR telnet to make session , Then ask about existing emails with VRFY
+
+nc -nv 192.168.50.8 25
+VRFY root
+
+
+#Python Code for Automation Email Fuzzing:
+#	Usage:  python3 smtp.py root 192.168.50.8
+
+
+	#!/usr/bin/python
+	import socket
+import sys
+	if len(sys.argv) != 3:
+        print("Usage: vrfy.py <username> <target_ip>")
+        sys.exit(0)
+	# Create a Socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	# Connect to the Server
+ip = sys.argv[2]
+connect = s.connect((ip,25))
+	# Receive the banner
+banner = s.recv(1024)
+	print(banner)
+	# VRFY a user
+user = (sys.argv[1]).encode()
+s.send(b'VRFY ' + user + b'\r\n')
+result = s.recv(1024)
+	print(result)
+	# Close the socket
+s.close()
+```
+
+SMTP Enumeration (Windows):
+```bash
+#Check the OPEN SMTP port:
+
+Test-NetConnection -Port 25 192.168.50.8
+
+#Install and use telnet to make session in windows:
+#dism /online /Enable-Feature /FeatureName:TelnetClient
+
+telnet 192.168.50.8 25
+
+```
+
+<details>
+<summary>SMB Enumeration</summary></br>
+
+SMB Enumeration (Discover):
+```bash
+#Port 161 UDP
+
+# find SNMP with Nmap OR onesixtyone:
+
+sudo nmap -sU --open -p 161 192.168.50.1-254 -oG open-snmp.txt
+
+onesixtyone 192.168.1.0/24 public       #(Default Community string = Public)
+onesixtyone -c Desktop/wordlist-common-snmp-community-strings.txt 192.168.201.0/24      #(dic for community)
+
+```
+
+SMB Enumeration (Discover):
+```bash
+#show all data like , process , interfaces, softwares, windows users …
+snmpwalk -c public -v1 -t 10 192.168.201.151 -Oa
+
+#Also you can read just a part of data:  (-c public = community string , -Oa =  conver hex to ASCII)
+
+#Windows users
+snmpwalk -c public -v1 192.168.50.151 1.3.6.1.4.1.77.1.2.25
+
+#Running Process:
+snmpwalk -c public -v1 192.168.50.151 1.3.6.1.2.1.25.4.2.1.2
+
+#Installed softwares:
+snmpwalk -c public -v1 192.168.50.151 1.3.6.1.2.1.25.6.3.1.2
+
+#Open tcp ports:
+snmpwalk -c public -v1 192.168.50.151 1.3.6.1.2.1.6.13.1.3
+
+#Interfaces Names:
+snmpwalk -c public -v1 192.168.201.151 1.3.6.1.2.1.2.2.1 -Oa
+
+```
+</details>
+
 
 ## Active Directory
 
