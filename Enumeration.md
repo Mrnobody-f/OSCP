@@ -39,7 +39,7 @@ site:*.com intitle:"index of" "parent directory"     (misconfigure to find paren
 site: gov.* intitle:"index.of" *.csv password
 inurl:admin filetype:xlsx site:gov.* password
 inurl:pastebin "SHODAN_API_KEY"
-site:edu intext:"index of"" "payroll" filetype:xlsx
+site:edu intext:"index of" "payroll" filetype:xlsx
 ```
 
 Query Sources :
