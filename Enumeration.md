@@ -147,13 +147,72 @@ https://website.informer.com/
 </details>
 
 
+## Active Information Gathering
+
+<details>
+<summary>DNS Enumeration</summary></br>
+
+Host:
+```bash
+host digikala.com
+Host 192.168.200.10
+Host -a digikala.com
+host -t txt digikala.com
+host -t ns digikala.com
+Host -t SOA digikala.com
+host -t CNAME digikala.com
+Host -t PTR digikala.com
+host -t mx digikala.com
+```
+
+Nslookup:
+```bash
+nslookup mail.megacorptwo.com
+nslookup -type=TXT info.megacorptwo.com 192.168.50.151
+nslookup -query=A example.com
+nslookup -query=MX example.com
+nslookup -query=NS example.com
+nslookup -query=TXT example.com
+nslookup -query=SOA example.com
+nslookup -query=CNAME sub.example.com
+nslookup -query=ANY example.com
+```
+
+</details>
+
+<details>
+<summary>Subdomain Enumeration</summary></br>
+
+Host Command:
+```bash
+# 1 line
+for domain in $(cat list.dic);do host $domain.megacorpone.com;done | grep -v "not found"
+
+# python code
+
+#!/bin/bash
+Read -p "dic ro bede: " dic
+Read -p "esm domain ra benevis" dom
+for domain in $(cat $dic);do host $domain.$dom;done | grep -v "not found"
+```
+
+Nslookup Command:
+```bash
+Get-Content subdomains.txt | ForEach-Object { nslookup "$_.example.com" }
+```
+
+Reverse Lookup Zone:
+```bash
+for ip in $(seq 155 192);do host 50.7.67.$ip;done | grep -v "not found"
+```
+</details>
 
 ## Active Directory
 
 <details>
 <summary>Domain Info</summary></br>
 
-net Command (CMD) :
+net Command (CMD):
 ```bash
 # if you have access to a Domain system use this commands in CMD
 net user /domain                    #(show all domain users)
