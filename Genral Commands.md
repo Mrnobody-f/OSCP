@@ -62,6 +62,7 @@ smbclient -L //10.10.235.61/                                     # Gather Info a
 smbclient //$ip/Anonymous                                        # (/Anonymous = Folder shared by 10.10.181.239)
 smbclient -U milesdyson //10.10.181.239/milesdyson               # (-U milesdyson = User)
 smbclient -N -L //10.129.42.253                                  # (-N = use Anonymous use if exist {also you can use just -U Anonymous} , -L = List of shares)
+smbclient -m SMB2 //192.168.87.131/share -U fcastle              # (-m SMB2 = version SMB)
 ```
 Commands in Share Enviroment:
 ```bash
