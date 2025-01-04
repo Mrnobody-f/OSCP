@@ -400,27 +400,84 @@ snmpwalk -c public -v1 192.168.201.151 1.3.6.1.2.1.2.2.1 -Oa
 <details>
 <summary>NMAP Basics</summary></br>
 
-aaa :
-```bash
+Switches :
 
+| Nmap Flag              | Description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| `-sV`                  | Attempts to determine the version of the services running                    |
+| `-p <x>` or `-p-`      | Port scan for port `<x>` or scan all ports                                   |
+| `-Pn`                  | Disable host discovery and scan for open ports                               |
+| `--top-ports=20`       | Top 20 ports in file (`/usr/share/nmap/nmap-services`)                       |
+| `-sn`                  | Enable host discovery (`-sn 192.168.1.1-254`)                               |
+| `-p-`                  | Find open ports                                                             |
+| `-A`                   | Enables OS and version detection, executes in-build scripts for further enumeration |
+| `-sC`                  | Scan with the default Nmap scripts                                          |
+| `-v`                   | Verbose mode                                                                |
+| `-sU`                  | UDP port scan                                                               |
+| `-sS`                  | TCP SYN port scan                                                           |
+| `-O`                   | OS Version Detection (fingerprinting)                                       |
+| `--osscan-guess`       | Guess the OS if unsure (`-O 192.168.1.1 --osscan-guess`)                    |
+| `-oG`                  | Save result of Nmap in a file (`-oG result.txt`)                             |
+| `-sT`                  | Full TCP Connect Scan (needed in certain proxy setups)                      |
+| `--script vuln`        | Check vulnerability scripts                                                 |
+| `--osscan-guess`       | Guess the OS if unsure (`-O 192.168.1.1 --osscan-guess`)                    |
+
+
+Examples:
+```bash
+Nmap -Pn -sV -sC --script vuln 10.10.0.73.76
+nmap -p 80 192.168.50.1-253 -oG web-sweep.txt
+nmap -sT -A --top-ports=20 192.168.50.1-253 -oG top-port-sweep.txt
+nmap -O 192.168.50.14 --osscan-guess
+nmap -sT -A 192.168.50.14
 ```
 </details>
 
 <details>
 <summary>NMAP Advance</summary></br>
 
-bbb :
+Decoy :
 ```bash
+#Decoy = send packet from other source ip
 
+nmap -D 9.9.9.9,1.1.1.1 192.168.1.99
+```
+
+Fragmentation :
+```bash
+nmap -f 192.168.1.2
 ```
 </details>
 
 <details>
 <summary>NMAP NSE</summary></br>
 
-bbb :
+NSE Detatils :
 ```bash
+#NSE path:
+https://nmap.org/nsedoc/scripts/
+/usr/share/nmap/scripts
 
+#finde NSE in kali:
+locate *.nse
+locate *.nse | grep ftp
+
+#Add NSE to Path:
+#search google like "cve-2021-41773 nse" Download NSE and copy to main path (/usr/share/nmap/scripts)
+```
+
+Important Scripts :
+```bash
+-sC                                                          # Default scripts
+--script vuln                                                # check vuln scripts , example: nmap -sV -p 443 --script "vuln" 192.168.1.1
+-p 445 --script=smb-enum-shares.nse,smb-enum-users.nse       # smb scripts
+nmap --script http-headers 192.168.50.6                      # gather http headers
+nmap -T 5 --script http-title 192.168.149.1/24               # show title in http web pages
+nmap -sV -p 443 --script "vuln" 192.168.1.1
+Nmap -sV -p 443 --script "cve-2021-41773" 192.168.1.1        # choose specific NSE
+nmap -v -p 21 --script ftp-anon 132.65.116.10-17             # check anonymous user for ftp
+Nmap -p80 --script=http-enum 192.168.1.1                     # web service finger prints     
+nmap -v -p 1433 --script ms-sql-info 114.143.55.154-160      # ms sql information
 ```
 </details>
 
