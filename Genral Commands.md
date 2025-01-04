@@ -56,12 +56,21 @@ nc 127.0.0.1 1234             #send request to ip and port
 <details>
 <summary>SMB</summary></br>
 
-smbclient:
+smbclient (Connect to Share Folder):
 ```bash
 smbclient -L //10.10.235.61/                                     # Gather Info and Data
 smbclient //$ip/Anonymous                                        # (/Anonymous = Folder shared by 10.10.181.239)
 smbclient -U milesdyson //10.10.181.239/milesdyson               # (-U milesdyson = User)
 smbclient -N -L //10.129.42.253                                  # (-N = use Anonymous use if exist {also you can use just -U Anonymous} , -L = List of shares)
+```
+Commands in Share Enviroment:
+```bash
+pwd
+cd Documents
+dir
+get <remote_file> <local_file>             (get remote.txt ./Downloads/remote.txt)
+put <local_file> <remote_file>
+del <file_name>
 ```
 </details>
 
