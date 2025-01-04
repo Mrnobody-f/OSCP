@@ -415,7 +415,7 @@ Get-ADUser (PowerShell):
 Get-ADUser -Identity gordon.stevens -Server za.tryhackme.com -Properties *         #(show all info about the selected user in the domain)
 Get-ADGroup -Identity "Tier 2 Admins" -Server za.tryhackme.com -Properties *       #(show all info about selected group)
 Get-ADGroupMember -Identity Administrators -Server za.tryhackme.com                #(show all memebers of selected group)
- Get-ADDomain -Server za.tryhackme.com                                             #(show all info about the Domain)
+Get-ADDomain -Server za.tryhackme.com                                              #(show all info about the Domain)
 
 ```
 
