@@ -13,7 +13,7 @@ ftp -p 10.129.42.253
 
 
 <details>
-<summary>FTP</summary></br>
+<summary>SSH</summary></br>
 
 ```bash
 ssh Bob@10.10.10.10
@@ -54,13 +54,14 @@ nc 127.0.0.1 1234             #send request to ip and port
 
 
 <details>
-<summary>smbclient</summary></br>
+<summary>SMB</summary></br>
 
+smbclient:
 ```bash
-smbclient -L //10.10.235.61/                                     #Gather Info and Data
-smbclient //$ip/Anonymous                                        #(/Anonymous = Folder shared by 10.10.181.239)
-smbclient -U milesdyson //10.10.181.239/milesdyson               #(-U milesdyson = User)
-
+smbclient -L //10.10.235.61/                                     # Gather Info and Data
+smbclient //$ip/Anonymous                                        # (/Anonymous = Folder shared by 10.10.181.239)
+smbclient -U milesdyson //10.10.181.239/milesdyson               # (-U milesdyson = User)
+smbclient -N -L //10.129.42.253                                  # (-N = use Anonymous use if exist {also you can use just -U Anonymous} , -L = List of shares)
 ```
 </details>
 
