@@ -350,6 +350,7 @@ Test-NetConnection -Port 25 192.168.50.8
 telnet 192.168.50.8 25
 
 ```
+</details>
 
 <details>
 <summary>SMB Enumeration</summary></br>
