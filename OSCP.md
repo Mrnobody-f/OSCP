@@ -467,6 +467,15 @@ scp user@remote_host:/remote/directory/remote_file.txt /local/directory/
 ```   
 </details>
 <details>
+    <summary>rockyou</summary></br>
+    
+```bash 
+/usr/share/wordlists/rockyou.txt.gz
+gzip -d rockyou.txt.gz 
+
+```   
+</details>
+<details>
     <summary>CUPP</summary></br>
     
 ```bash
