@@ -503,6 +503,16 @@ cewl -w list.txt -d 5 -m 8 https://clinic.thmredteam.com/
 ```   
 </details>
 
+## Zip
+<details>
+<summary>gzip</summary>
+
+```bash
+#Unzip
+gzip -d rockyou.txt.gz 
+```
+</details>
+
 ## FUZZING
 
 <details>
