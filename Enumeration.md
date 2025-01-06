@@ -593,9 +593,8 @@ Find Live Subdomains :
 <details>
 <summary>Fingerprinting With NMAP</summary></br>
 
-Find Live Subdomains :
 ```bash
-sudo nmap -p80  -sV 192.168.50.20```
+sudo nmap -p80  -sV 192.168.50.20
 sudo nmap -p80 --script=http-enum 192.168.50.20
 ```
 </details>
